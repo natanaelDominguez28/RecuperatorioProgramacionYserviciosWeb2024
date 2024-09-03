@@ -1,0 +1,68 @@
+<br>
+<div>
+  <button class="btn bg-info text-white" (click)="obtenerAutores()">Obtener autores populares</button>
+</div>
+<br>
+<br>
+
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID Autor</th>
+        <th scope="col">Nombre del autor</th>
+        <th scope="col">Foto del Autor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let a of autores">
+        <td>
+          <li>
+            <a href="#" (click)="obtenerInformacionDeAutorPorId(a.author_id)" data-bs-toggle="modal"
+              data-bs-target="#exampleModal">{{a.author_id}}</a>
+          </li>
+        </td>
+        <td>{{a.name}}</td>
+        <td><img src={{a.image}} alt="imagen autor"></td>
+      </tr>
+      <tr>
+    </tbody>
+  </table>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Libros de {{nombreAuthor}} </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Autor</th>
+              <th scope="col">Biografia</th>
+              <th scope="col">Libros</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{nombreAuthor}}</td>
+              <td>{{biografia}}</td>
+            </tr>
+            <tr *ngFor="let libro of libros">
+              <td>{{libro["name"]}}</td>
+              <td>{{libro["date"]}}</td>
+              <td><a href="{{libro['url']}}">{{libro["url"]}}</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
